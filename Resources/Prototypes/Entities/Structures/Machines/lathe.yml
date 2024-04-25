@@ -807,6 +807,7 @@
       - PillCanister
       - BodyBag
       - ChemistryEmptyBottle01
+      - BaseChemistryEmptyVial
       - RollerBedSpawnFolded
       - CheapRollerBedSpawnFolded
       - EmergencyRollerBedSpawnFolded
