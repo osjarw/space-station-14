@@ -296,6 +296,27 @@
     pack: MedibotAds
   - type: Inventory
     templateId: medibot
+  - type: NPCTargetTracks
+    settings:
+      # Define what stims the NPC wants, how how it should score them. For most cases, attackPeak and attackIgnoreTime
+      # can be 0, to avoid weird ramping up behaviour.
+      # It isn't currently implemented, but some faction checks would probably be useful
+      AUDIO_GUN:
+        id: idk
+        attackPeak: 1
+        attackIgnoreTime: 0
+        attackTime: 2
+        decayTime: 3
+        sustain: 0.5
+        release: 10
+      VISUAL_LOS:
+        id: los
+        attackPeak: 1
+        attackIgnoreTime: 0
+        attackTime: 3
+        decayTime: 3
+        sustain: 0.5
+        release: 5
 
 - type: entity
   parent:

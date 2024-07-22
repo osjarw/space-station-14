@@ -25,6 +25,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Containers;
+using Content.Server.NPC.Systems;
+using Content.Server.NPC.Components;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -40,6 +42,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly NPCPerceptionSystem _perceptionSystem = default!;
 
     private const float DamagePitchVariation = 0.05f;
     public const float GunClumsyChance = 0.5f;
@@ -290,6 +293,10 @@ public sealed partial class GunSystem : SharedGunSystem
                     throw new ArgumentOutOfRangeException();
             }
         }
+
+        // Inform the NPCs of a gunshot
+        if (user != null)
+            _perceptionSystem.CreateStim(new Stim() { Range = 10f, Actor = (EntityUid)user, Coordinates = fromCoordinates, Type = StimType.AUDIO_GUN });
 
         RaiseLocalEvent(gunUid, new AmmoShotEvent()
         {
